@@ -1,15 +1,20 @@
-import { useContext } from 'react';
 import { Grid } from '@mui/material/';
-import { BlogContext } from "../contexts/BlogContext";
 import loadingLogo from "../assets/loading.gif";
 import BlogCards from '../components/BlogCards';
-
+import { getData} from "../redux/thunk/blogThunk"
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Dashboard() {
-  const { dataArray } = useContext(BlogContext);
+  const { dataArray } = useSelector((state) => state.blog);
+  const dispatch = useDispatch();
 
-  
+  useEffect(() => {
+    dispatch(getData)
+  }, [dispatch])
+  console.log(dataArray);
+
   return (
     <div className='dashboard'>
       <h1>──── DASHBOARD ────</h1>

@@ -1,21 +1,15 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { useFormik } from 'formik';
 import { OutlinedInput, Button, Container, FormControl, FormHelperText, InputLabel  } from '@mui/material/';
 import blog from "../assets/blok.png";
-import { BlogContext } from '../contexts/BlogContext';
 import { toastSuccessNotify} from "../helpers/toastNotify";
-import { useDispatch, useSelector } from 'react-redux';
-import { setBlogData } from '../redux/actions/blogActions';
-import { getData, addNewBlog} from "../helpers/dataBaseFunctions";
-import { useEffect} from "react";
+import { useSelector } from 'react-redux';
+import { addNewBlog} from "../helpers/dataBaseFunctions";
 
 function NewBlog() {
-  
 
   const {currentUser}= useSelector((state) => state.auth)
-  const { setBlogDatas } = useContext(BlogContext); 
   const navigate = useNavigate();
   var currentdate = new Date();
   var today = "issue date:" + currentdate.getDate() + "/" + (currentdate.getMonth()+1) + "/" + currentdate.getFullYear() + "  " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();

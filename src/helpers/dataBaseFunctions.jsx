@@ -22,18 +22,18 @@ export const addNewBlog = (info) => {
     }
 }
 
-export const getData = (setDataArray) => {
-    const db = getDatabase();
-    const userRef = ref(db, "blog");
-    onValue(userRef, (snapshot) => {
-        const data = snapshot.val();
-        const blogArray = [];
-        for (let id in data) {
-            blogArray.push({ id, ...data[id] })
-        }
-        setDataArray(blogArray);
-    });
-}
+// export const getData = (setDataArray) => {
+//     const db = getDatabase();
+//     const userRef = ref(db, "blog");
+//     onValue(userRef, (snapshot) => {
+//         const data = snapshot.val();
+//         const blogArray = [];
+//         for (let id in data) {
+//             blogArray.push({ id, ...data[id] })
+//         }
+//         setDataArray(blogArray);
+//     });
+// }
 
 export const GetDetailsData = (id) => {
     const [details, setDetails] = useState();
@@ -64,3 +64,21 @@ export const EditUser = (info, currentUserId) => {
         return update(ref(db), updates);
     }
 }
+
+export const handleFavoriteIcon = (e, data, currentUser) => {
+    e.stopPropagation();
+    if (!currentUser) {
+      toastWarnNotify("please login to like")
+    } else {
+        if (data.likedUserIds) {
+          if (data.likedUserIds.includes(currentUser.uid)) {
+            EditUser({ ...data, likedUserIds: data.likedUserIds.filter((item) => !(item === currentUser.uid)) })
+          } else {
+            data.likedUserIds.push(currentUser.uid)
+            EditUser({ ...data, likedUserIds: data.likedUserIds })
+          }
+        } else {
+          EditUser({ ...data, likedUserIds: currentUser.uid.split(" ") })
+        }
+    }
+  }

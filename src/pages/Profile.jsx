@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState  } from 'react';
+import { useEffect, useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Card, CardContent, Typography} from '@mui/material/';
-import { BlogContext } from "../contexts/BlogContext";
 import { useSelector } from 'react-redux';
 
 export default function Profile() {
   const {currentUser}= useSelector((state) => state.auth)
-  const { dataArray } = useContext(BlogContext);
+  const { dataArray } = useSelector((state) => state.blog);
   const [likedBlog, setLikedBlog] = useState();
   const navigate = useNavigate();
 

@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
     Typography, Grid, Card, CardHeader, CardMedia,
     CardContent, CardActions, Avatar, IconButton
@@ -7,16 +6,15 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import { BlogContext } from "../contexts/BlogContext";
 import { useNavigate } from 'react-router-dom';
 import { toastSuccessNotify } from "../helpers/toastNotify";
 import placeholder from "../assets/placeholder.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { setDisplayComment } from '../redux/actions/blogActions';
+import { handleFavoriteIcon } from '../helpers/dataBaseFunctions';
 
 function BlogCards({ data }) {
     const dispatch = useDispatch();
-    const { handleFavoriteIcon } = useContext(BlogContext);
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.auth)
 

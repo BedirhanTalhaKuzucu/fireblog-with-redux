@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { useParams, useNavigate  } from 'react-router-dom';
 import { OutlinedInput, CardActions, Button, Card, 
 CardContent, CardMedia, CardHeader, Avatar, Typography, 
@@ -8,22 +7,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useFormik } from 'formik';
 import placeholder from "../assets/placeholder.png";
-import { BlogContext } from "../contexts/BlogContext";
-import { EditUser, GetDetailsData, DeleteUser } from "../helpers/dataBaseFunctions";
+import { EditUser, GetDetailsData, DeleteUser, handleFavoriteIcon  } from "../helpers/dataBaseFunctions";
 import Comments from '../components/Comments';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDisplayComment } from '../redux/actions/blogActions';
 
 
-
 function Details() {
   const dispatch = useDispatch();
-  const { displayComment, blogDatas } = useSelector((state) => state.blog);
-  console.log(blogDatas)
+  const { displayComment } = useSelector((state) => state.blog);
   const { Id } = useParams();
   const { details } = GetDetailsData(Id);
   const {currentUser}= useSelector((state) => state.auth)
-  const { handleFavoriteIcon } = useContext(BlogContext);
   const navigate = useNavigate();
 
   const formik = useFormik({
