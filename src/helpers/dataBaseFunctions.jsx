@@ -22,19 +22,6 @@ export const addNewBlog = (info) => {
     }
 }
 
-// export const getData = (setDataArray) => {
-//     const db = getDatabase();
-//     const userRef = ref(db, "blog");
-//     onValue(userRef, (snapshot) => {
-//         const data = snapshot.val();
-//         const blogArray = [];
-//         for (let id in data) {
-//             blogArray.push({ id, ...data[id] })
-//         }
-//         setDataArray(blogArray);
-//     });
-// }
-
 export const GetDetailsData = (id) => {
     const [details, setDetails] = useState();
     useEffect(() => {

@@ -40,16 +40,6 @@ export const login = async (email, password, navigate) => {
     }
 };
 
-// export const userObserver = (dispatch, setCurrentUser ) => {
-//     onAuthStateChanged(auth, (currentUser) => {
-//         if (currentUser) {
-//             dispatch(setCurrentUser(currentUser));
-//         } else {
-//             // User is signed out
-//             return false ;
-//         }
-//     })
-// };
 
 export const logOut = () => {
     signOut(auth);
